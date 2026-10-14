@@ -1,4 +1,6 @@
 import Product from "../models/Product.js"
+import { handleError } from "../utils/errorHandler.js";
+
 // Create API requests using async/await and Promises.
 // Implement functions to fetch product data and handle errors using try/catch.
 export async function fetchProducts(): Promise<Product[]> { // return type is an array
@@ -14,7 +16,7 @@ export async function fetchProducts(): Promise<Product[]> { // return type is an
         return data.products;
 
     } catch (error) {
-        console.error("Fetch error", error);
+        handleError(error);
         throw error; 
     }
 };
