@@ -15,6 +15,15 @@ export class DataError extends Error {
 }
 
 // Implement a custom error class and functions to handle different types of errors gracefully.
-function handleError() {
-    
+export function handleError(error: unknown): void {
+    // Display error
+    if (error instanceof NetworkError) {
+        console.error('Network problem:', error.message);
+    } else if (error instanceof DataError) {
+        console.error('Data problem:', error.message);
+    } else if (error instanceof Error) {
+        console.error('Unexpected error:', error.message)
+    }else {
+        console.error('Unresolved Error:', error);
+    }
 }
