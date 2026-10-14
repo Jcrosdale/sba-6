@@ -1,0 +1,29 @@
+// Import the product classes, tax calculator, and API service.
+import Product from "../models/Product.js"
+import { fetchProducts } from "./services/apiService.js";
+import calculateTax from "../utils/taxCalculator.js";
+import DiscountCalculator from "../utils/discountCalculator.js";
+import { handleError } from "../utils/errorHandler.js";
+
+// Use asynchronous functions to fetch product data and display it.
+async function main(): Promise<void> {
+    try {
+        // Create instances of Product by fetching product data from the API.
+        const productData = await fetchProducts()
+
+        const product = productData.map((item) => //go through each object in the array
+            new Product(
+                item.id,
+                item.title,
+                item.price,
+                item.category,
+                item.discountPercentage
+            )
+        );
+    } catch {
+        handleError(Error);
+    }
+}
+// Demonstrate error handling and OOP principles in action.
+
+main();
