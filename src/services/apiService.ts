@@ -17,4 +17,4 @@ export async function fetchProducts(): Promise<Product[]> { // return type is an
         console.error("Fetch error", error);
         throw error; 
     }
-}
+};
