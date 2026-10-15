@@ -1,5 +1,5 @@
 import Product from "../models/Product.js"
-import { handleError } from "../utils/errorHandler.js";
+import { handleError, NetworkError } from "../utils/errorHandler.js";
 
 // Create API requests using async/await and Promises.
 // Implement functions to fetch product data and handle errors using try/catch.
@@ -16,7 +16,10 @@ export async function fetchProducts(): Promise<Product[]> { // return type is an
         return data.products;
 
     } catch (error) {
-        handleError(error);
+        if (error instanceof TypeError) {
+            throw new NetworkError('Unable to connect to the API.')
+        }
+
         throw error; 
     }
 };
