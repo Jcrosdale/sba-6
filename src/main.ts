@@ -11,7 +11,7 @@ async function main(): Promise<void> {
         // Create instances of Product by fetching product data from the API.
         const productData = await fetchProducts();
 
-        const product = productData.map((item) => //go through each object in the array
+        const products = productData.map((item) => //go through each object in the array
             new Product(
                 item.id,
                 item.title,
@@ -27,7 +27,7 @@ async function main(): Promise<void> {
             console.log(product.displayDetails());
 
             const discount = discountCalculator.calculateDiscount(product);
-            const discountedPrice = product.getPriceWithDiscount;
+            const discountedPrice = product.getPriceWithDiscount();
             const tax = calculateTax(product);
 
             console.log(`Original Price: $${product.price}`);
@@ -35,10 +35,10 @@ async function main(): Promise<void> {
             console.log(`Price After Discount: $${discountedPrice}`);
             console.log(`Tax amount: $${tax}`);
         };
-    } catch {
+    } catch (error) { // passes the error to the function
         handleError(Error);
     }
 }
 
-
+// display
 main();
